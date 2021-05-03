@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 /*exports.login = async(req, res , next)=>{
     console.log(req.body);
     try{
-        const usuario = await models.Usuario.findOne({where: {email: req.body.email}});
+        const usuario = await models.Usuario.findOne({where: {correo: req.body.correo}});
         if(usuario){
             console.log(usuario.pws)
 
@@ -24,7 +24,7 @@ const jwt = require('jsonwebtoken');
                 const token = jwt.sign({
                     id:usuario.id, 
                     nombre: usuario.nombre_usuario, 
-                    email: usuario.email, 
+                    correo: usuario.correo, 
                     rol: usuario.rol, 
                     estado: usuario.estado
 
@@ -65,12 +65,15 @@ module.exports = {
     login: async(req, res, next) => {
         try {
             console.log(req.body)
-            let usuario = await models.Usuario.findOne({ where: { email: req.body.email } });
+            let usuario = await models.Usuario.findOne({ where: { correo: req.body.email} });
+            console.log(req.body.email)
             if (usuario) {
 
                 console.log(req.body.password, usuario.pws)
 
                 let match = await bcrypt.compare(req.body.password, usuario.pws);
+
+                console.log(req.body.email)
 
 
                 if (match) {
@@ -80,7 +83,7 @@ module.exports = {
                     const token = jwt.sign({
                         id:usuario.id, 
                         nombre: usuario.nombre_usuario, 
-                        email: usuario.email, 
+                        correo: usuario.correo, 
                         rol: usuario.rol, 
                         estado: usuario.estado
     
@@ -140,11 +143,11 @@ module.exports = {
     update: async(req, res, next) => {
         try {
             let clave = req.body.pws;
-            const reg = await models.Usuario.findOne({where: {email: req.body.email}});
+            const reg = await models.Usuario.findOne({where: {correo: req.body.correo}});
             if ( clave != reg.pws) {
                 req.body.pws = await bcrypt.hash(req.body.pws, 10);
             }
-            const reg2 = await models.Usuario.update({nombre_usuario: req.body.nombre, rol: req.body.rol, email: req.body.email, pws: req.body.pws}, { where: { id: req.body.id}});
+            const reg2 = await models.Usuario.update({nombre_usuario: req.body.nombre, rol: req.body.rol, correo: req.body.correo, pws: req.body.pws}, { where: { id: req.body.id}});
             res.status(200).json(reg2);
         } catch(error) {
             res.status(500).send({

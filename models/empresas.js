@@ -10,7 +10,7 @@ module.exports = (sequelize, type)=>{
         nombre_empresa: type.STRING, 
         nit: type.STRING, 
         telefono: type.STRING,
-        email: type.STRING,
+        correo: type.STRING,
         pws: type.STRING,
         estado: type.INTEGER
         

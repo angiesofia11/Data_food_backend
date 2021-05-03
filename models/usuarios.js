@@ -15,7 +15,7 @@ module.exports = (sequelize, type)=>{
         ciudad: type.STRING,
         telefono: type.STRING,
         pws: type.STRING, 
-        email: type.STRING,
+        correo: type.STRING,
         fecha_nacimiento: type.DATEONLY,
         genero: type.INTEGER, 
         rol: type.INTEGER, 
