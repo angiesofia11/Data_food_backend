@@ -19,7 +19,7 @@ app.use('/api', router);
 
 
 
-app.set('PORT', 8080);
+app.set('PORT', process.env.PORT || 3000);
 
 
 app.listen(app.get('PORT'), ()=>{
