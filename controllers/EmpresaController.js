@@ -10,14 +10,14 @@ login: async(req, res, next)=>{
     console.log(req.body)
 
     try {
-        console.log(req.body.email)
+        console.log(req.body.correo)
 
-        let empresa = await models.Empresa.findOne({ where: { correo: req.body.email } });
+        let empresa = await models.Empresa.findOne({ where: { correo: req.body.correo } });
         if (empresa) {
 
             console.log(req.body.pws, empresa.pws)
 
-            let match = await bcrypt.compare(req.body.password, empresa.pws);
+            let match = await bcrypt.compare(req.body.pws, empresa.pws);
 
 
             if (match) {
