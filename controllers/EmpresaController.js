@@ -10,8 +10,9 @@ login: async(req, res, next)=>{
     console.log(req.body)
 
     try {
-        console.log(req.body.correo)
-        let empresa = await models.Empresa.findOne({ where: { correo: req.body.correo } });
+        console.log(req.body.email)
+
+        let empresa = await models.Empresa.findOne({ where: { correo: req.body.email } });
         if (empresa) {
 
             console.log(req.body.pws, empresa.pws)
@@ -93,11 +94,11 @@ list: async(req, res, next) => {
 update: async(req, res, next) => {
     try {
         let clave = req.body.pws;
-        const reg = await models.Empresa.findOne({where: {correo: req.body.correo}});
+        const reg = await models.Empresa.findOne({where: {correo: req.body.email}});
         if ( clave != reg.pws) {
             req.body.pws = await bcrypt.hash(req.body.pws, 10);
         }
-        const reg2 = await models.Empresa.update({nombre_usuario: req.body.nombre, rol: req.body.rol, correo: req.body.correo, pws: req.body.pws}, { where: { id: req.body.id}});
+        const reg2 = await models.Empresa.update({nombre_usuario: req.body.nombre, rol: req.body.rol, correo: req.body.email, pws: req.body.pws}, { where: { id: req.body.id}});
         res.status(200).json(reg2);
     } catch(error) {
         res.status(500).send({
