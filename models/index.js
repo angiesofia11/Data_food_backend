@@ -1,8 +1,9 @@
 const {Sequelize, DataTypes} = require('sequelize');
 const usuarioModel = require('./usuarios');
-const empresaModel = require('./empresas')
+const empresaModel = require('./empresas');
+const dietaModel = require('./dietas');
 //Instancia
-const sequelize = new Sequelize('8Bzpahyu0c', '8Bzpahyu0c', 'oW8NeTpdhk', {
+const sequelize = new Sequelize('JmlUzblodC', 'JmlUzblodC', 'kfKSC28YQK', {
     host: 'remotemysql.com',
     port: '3306',
     dialect: 'mysql' 
@@ -10,14 +11,16 @@ const sequelize = new Sequelize('8Bzpahyu0c', '8Bzpahyu0c', 'oW8NeTpdhk', {
 
 const Usuario = usuarioModel(sequelize, Sequelize);
 const Empresa = empresaModel(sequelize, Sequelize);
+const Dieta = dietaModel(sequelize, Sequelize);
 
 //sincronizacion
-sequelize.sync({ force: false})
+sequelize.sync({ force: true})
   .then(()=>{ //promesa
       console.log('Tablas Sincronizadas')
   });
 
   module.exports ={
       Usuario, 
-      Empresa
+      Empresa, 
+      Dieta
   }

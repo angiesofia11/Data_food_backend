@@ -118,8 +118,15 @@ module.exports = {
     },
     add: async(req, res, next) =>{
         try {
+
+            console.log(req.body)
             req.body.pws = await bcrypt.hash(req.body.pws, 10);
             const reg = await models.Usuario.create(req.body);
+            /*const usuario_id = req.body.id;
+            const preferencias = req.body.preferencias;*/
+
+            //const dieta = await models.Dieta.create(usuario_id, preferencias);
+            //console.log(json(dieta));
             res.status(200).json(reg);
         } catch (error) {
             res.status(500).send({
