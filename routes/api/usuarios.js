@@ -32,9 +32,9 @@ router.post('/registrar', async(req, res)=>{
 
 
 router.get('/', usuarioController.list);
-router.get('/update', usuarioController.update);
-router.get('/activate', usuarioController.activate);
-router.get('/desactivate', usuarioController.deactivate);
+router.put('/update', usuarioController.update);
+router.put('/activate', usuarioController.activate);
+router.put('/desactivate', usuarioController.deactivate);
 //router.post('/registrar', usuarioController.registar);
 router.post('/login', usuarioController.login);
 

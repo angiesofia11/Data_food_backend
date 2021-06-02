@@ -21,7 +21,7 @@ module.exports = (sequelize, type)=>{
         fecha_nacimiento: type.DATEONLY,
         genero: type.INTEGER, 
         rol: type.INTEGER, 
-        preferncias: type.JSON,
+        //preferencias: type.JSON,
         estado_usuario: type.INTEGER, 
         aceptacion_terminos: type.STRING, 
         //fecha_aceptacion_terminos: type.DATE

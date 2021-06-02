@@ -14,7 +14,7 @@ const Empresa = empresaModel(sequelize, Sequelize);
 const Dieta = dietaModel(sequelize, Sequelize);
 
 //sincronizacion
-sequelize.sync({ force: true})
+sequelize.sync({ force: false})
   .then(()=>{ //promesa
       console.log('Tablas Sincronizadas')
   });
